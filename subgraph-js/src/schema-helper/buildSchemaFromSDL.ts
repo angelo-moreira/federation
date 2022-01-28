@@ -19,7 +19,7 @@ import {
   isScalarType,
   isEnumType,
   GraphQLEnumValueConfig,
-  ConstDirectiveNode,
+  DirectiveNode,
   ASTNode,
 } from 'graphql';
 
@@ -195,7 +195,7 @@ export function buildSchemaFromSDL(
 
   const schemaDefinitions: SchemaDefinitionNode[] = [];
   const schemaExtensions: SchemaExtensionNode[] = [];
-  const schemaDirectives: ConstDirectiveNode[] = [];
+  const schemaDirectives: DirectiveNode[] = [];
 
   for (const definition of documentAST.definitions) {
     if (isTypeDefinitionNode(definition)) {
@@ -304,7 +304,9 @@ export function buildSchemaFromSDL(
     ),
     astNode: {
       kind: Kind.SCHEMA_DEFINITION,
-      directives: schemaDirectives,
+      // In GraphQLv15, this is a DirectiveNode[], but in v16 this is an
+      // entirely incompatible type `readonly ConstDirectiveNode[]`.
+      directives: schemaDirectives as any,
       operationTypes: [] // satisfies typescript, will be ignored
     }
   });
