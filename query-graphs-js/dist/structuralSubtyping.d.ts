@@ -1,0 +1,4 @@
+import { FieldDefinition, InputType, InterfaceType, ObjectType, SubtypingRule, UnionType } from '@apollo/federation-internals';
+export declare function isStructuralInputSubType(inputType: InputType, maybeSubType: InputType): boolean;
+export declare function isStructuralFieldSubtype(fieldDef: FieldDefinition<any>, maybeSubType: FieldDefinition<any>, allowedRules?: SubtypingRule[], unionMembershipTester?: (union: UnionType, maybeMember: ObjectType) => boolean, implementsInterfaceTester?: (maybeImplementer: ObjectType | InterfaceType, itf: InterfaceType) => boolean): boolean;
+//# sourceMappingURL=structuralSubtyping.d.ts.map
